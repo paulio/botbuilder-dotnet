@@ -3,6 +3,7 @@
 
 namespace Connector.Tests
 {
+    using System.Linq;
     using Microsoft.Bot.Connector;
     using Microsoft.Bot.Schema;
     using Microsoft.Rest;
@@ -344,7 +345,7 @@ namespace Connector.Tests
                             Images = new CardImage[] { new CardImage() { Url = "http://i.giphy.com/Ki55RUbOV5njy.gif" } }
                         }
                     },
-                }
+                }.ToList()
 
             };
 

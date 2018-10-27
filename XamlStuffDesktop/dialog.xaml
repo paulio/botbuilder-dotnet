@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SequenceDialog xmlns="clr-namespace:Microsoft.Bot.Builder.Dialogs;assembly=Microsoft.Bot.Builder.Dialogs"
+            xmlns:bb="clr-namespace:Microsoft.Bot.Builder;assembly=Microsoft.Bot.Builder"
+            xmlns:luis="clr-namespace:Microsoft.Bot.Builder.AI.Luis;assembly=Microsoft.Bot.Builder.AI.Luis"
+            xmlns:qna="clr-namespace:Microsoft.Bot.Builder.AI.QnA;assembly=Microsoft.Bot.Builder.AI.QnA"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Dialogs>
+        <NumberPrompt InitialPrompt="What is your age?" RetryPrompt="I didn't understand that, what is your age?" 
+                  MinValue="1" MaxValue="100"/>
+    </Dialogs>
+</SequenceDialog>

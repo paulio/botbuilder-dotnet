@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<d:SequenceDialog
+    xmlns="clr-namespace:Microsoft.Bot.Schema;assembly=Microsoft.Bot.Schema"
+    xmlns:bb="clr-namespace:Microsoft.Bot.Builder;assembly=Microsoft.Bot.Builder"
+    xmlns:d="clr-namespace:Microsoft.Bot.Builder.Dialogs;assembly=Microsoft.Bot.Builder.Dialogs"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xsi:schemaLocation="clr-namespace:Microsoft.Bot.Schema schema.xsd clr-namespace:Microsoft.Bot.Builder botbuilder.xsd"
+    Id="testDialog">
+    <d:SequenceDialog.Resources>
+        <bb:ActivityTemplate x:Key="Issue_InitialPrompt" Text="What is your issue" Speak="Yo, drop your probs man" AttachmentLayout="Carousel">
+            <bb:ActivityTemplate.Attachments>
+                <Attachment ContentUrl="http://foo.com/f.jpg" ContentType="image/jpg"/>
+                <Attachment ContentUrl="http://foo.com/y.jpg" ContentType="image/jpg"/>
+                <Attachment ContentUrl="http://foo.com/z.jpg" ContentType="image/jpg"/>
+            </bb:ActivityTemplate.Attachments>
+            
+            <bb:ActivityTemplate.SuggestedActions>
+                <SuggestedActions>
+                    <SuggestedActions.Actions>
+                        <CardAction Text="OK" >
+                            <CardAction.Value>
+                                <x:String>This is my result action</x:String>
+                            </CardAction.Value>
+                        </CardAction>
+                        <CardAction Text="You"/>
+                        <CardAction Text="Cancel"/>
+                    </SuggestedActions.Actions>
+                </SuggestedActions>
+            </bb:ActivityTemplate.SuggestedActions>
+        </bb:ActivityTemplate>
+
+        <bb:ActivityTemplate x:Key="Issue_RetryPrompt" Text="I Didn't understand that, mhat is your problem" Speak="What is your problem man?"/>
+
+    </d:SequenceDialog.Resources>
+    
+    <d:SequenceDialog.Dialogs>
+        <d:TextPrompt Id="NamePrompt" Slot="name"
+                    InitialPrompt="What is your name?" 
+                    RetryPrompt="I didn't understand that, what is your name?"/>
+
+        <d:IntegerPrompt Id="agePrompt" MinValue="1" MaxValue="100" 
+                          InitialPrompt="What is your age?"
+                          RetryPrompt="I didn't understand that, what is your age?"/>
+
+        <d:TextPrompt Id="IssuePrompt" Slot="issue" 
+                      InitialPrompt="{x:StaticResource Issue_InitialPrompt}" 
+                      RetryPrompt="{x:StaticResource Issue_InitialPrompt}"/>
+
+        <!--<d:TextPrompt Id="IssuePrompt" Slot="issue" 
+            InitialPrompt="{Template InitialIssuePrompt, data}" RetryPrompt="{Template RetryTemplate, data}"/>-->
+
+    </d:SequenceDialog.Dialogs>
+</d:SequenceDialog>
+
+AttachmentLayout="Carousel" AttachmentLayout="Carousel" AttachmentLayout="Carousel"

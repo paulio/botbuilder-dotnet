@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A96C6555-C9A0-4EF9-8479-F6A315372A30}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>XamlStuffDesktop</RootNamespace>
+    <AssemblyName>XamlStuffDesktop</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="test.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\libraries\Microsoft.Bot.Builder.AI.LUIS\Microsoft.Bot.Builder.AI.Luis.csproj">
+      <Project>{67aa3c00-e2c5-4d13-ba5e-72eb0e5b8daa}</Project>
+      <Name>Microsoft.Bot.Builder.AI.Luis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\libraries\Microsoft.Bot.Builder.AI.QnA\Microsoft.Bot.Builder.AI.QnA.csproj">
+      <Project>{d9b2ef5d-0515-460f-948a-2bb70c8dcf62}</Project>
+      <Name>Microsoft.Bot.Builder.AI.QnA</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\libraries\Microsoft.Bot.Builder.Azure\Microsoft.Bot.Builder.Azure.csproj">
+      <Project>{b2c5eed9-21b2-4763-ab92-c1995b76da3a}</Project>
+      <Name>Microsoft.Bot.Builder.Azure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\libraries\Microsoft.Bot.Builder.Dialogs\Microsoft.Bot.Builder.Dialogs.csproj">
+      <Project>{0f639eb4-fb64-4909-8a10-fb93e7be3afb}</Project>
+      <Name>Microsoft.Bot.Builder.Dialogs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\libraries\Microsoft.Bot.Builder\Microsoft.Bot.Builder.csproj">
+      <Project>{ada8ab8b-2066-4193-b8f7-985669b23e00}</Project>
+      <Name>Microsoft.Bot.Builder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\libraries\Microsoft.Bot.Configuration\Microsoft.Bot.Configuration.csproj">
+      <Project>{0b8abfdb-f9cf-4ec6-988e-9c32d9e01c26}</Project>
+      <Name>Microsoft.Bot.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\libraries\Microsoft.Bot.Connector\Microsoft.Bot.Connector.csproj">
+      <Project>{6462da5d-27dc-4cd5-9467-5efb998fd838}</Project>
+      <Name>Microsoft.Bot.Connector</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\libraries\Microsoft.Bot.Schema\Microsoft.Bot.Schema.csproj">
+      <Project>{c1f54cdc-ad1d-45bb-8f7d-f49e411afaf1}</Project>
+      <Name>Microsoft.Bot.Schema</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="dialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

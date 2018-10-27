@@ -3,6 +3,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
@@ -41,6 +43,7 @@ namespace Microsoft.Bot.Schema
 
         partial void CustomInit()
         {
+            this.Attachments = new List<Attachment>();
         }
 
         /// <summary>

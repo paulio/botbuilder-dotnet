@@ -13,6 +13,8 @@ namespace Microsoft.Bot.Builder.Dialogs
 {
     public class DateTimePrompt : Prompt<IList<DateTimeResolution>>
     {
+        public DateTimePrompt() { }
+
         public DateTimePrompt(string dialogId, PromptValidator<IList<DateTimeResolution>> validator = null, string defaultLocale = null)
             : base(dialogId, validator)
         {
@@ -20,6 +22,14 @@ namespace Microsoft.Bot.Builder.Dialogs
         }
 
         public string DefaultLocale { get; set; }
+
+        public DateTime MinValue { get; set; }
+
+        public DateTime MaxValue { get; set; }
+
+        public int MinTime { get; set; }
+
+        public int MaxTime{ get; set; }
 
         protected override async Task OnPromptAsync(ITurnContext turnContext, IDictionary<string, object> state, PromptOptions options, bool isRetry, CancellationToken cancellationToken = default(CancellationToken))
         {

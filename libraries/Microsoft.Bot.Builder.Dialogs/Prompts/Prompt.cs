@@ -21,11 +21,40 @@ namespace Microsoft.Bot.Builder.Dialogs
 
         private readonly PromptValidator<T> _validator;
 
+        public Prompt()
+        {
+        }
+
         public Prompt(string dialogId, PromptValidator<T> validator = null)
             : base(dialogId)
         {
             _validator = validator;
         }
+
+        /// <summary>
+        /// Gets or sets the initial prompt to send the user as <seealso cref="Activity"/>Activity.
+        /// </summary>
+        /// <value>
+        /// The initial prompt to send the user as <seealso cref="Activity"/>Activity.
+        /// </value>
+        public ActivityTemplate InitialPrompt { get; set; }
+
+        /// <summary>
+        /// Gets or sets the retry prompt to send the user as <seealso cref="Activity"/>Activity.
+        /// </summary>
+        /// <value>
+        /// The retry prompt to send the user as <seealso cref="Activity"/>Activity.
+        /// </value>
+        public ActivityTemplate RetryPrompt { get; set; }
+
+        public IList<Choice> Choices { get; set; }
+
+        public object Validations { get; set; }
+
+        /// <summary>
+        ///  name of the slot
+        /// </summary>
+        public string Slot { get; set; }
 
         public override async Task<DialogTurnResult> BeginDialogAsync(DialogContext dc, object options, CancellationToken cancellationToken = default(CancellationToken))
         {

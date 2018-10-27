@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<d:SequenceDialog
+    xmlns="clr-namespace:Microsoft.Bot.Schema;assembly=Microsoft.Bot.Schema"
+    xmlns:bb="clr-namespace:Microsoft.Bot.Builder;assembly=Microsoft.Bot.Builder"
+    xmlns:d="clr-namespace:Microsoft.Bot.Builder.Dialogs;assembly=Microsoft.Bot.Builder.Dialogs"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Id="testDialog">
+
+    <d:SequenceDialog.Dialogs>
+        
+        <d:TextPrompt Id="NamePrompt" Slot="name"
+                    InitialPrompt="What is your name?" 
+                    RetryPrompt="I didn't understand that, what is your name?"/>
+
+        <d:IntegerPrompt Id="agePrompt" Slot="age" MinValue="1" MaxValue="100" 
+                          InitialPrompt="What is your age?"
+                          RetryPrompt="I didn't understand that, what is your age?"/>
+        
+        <d:DateTimePrompt Id="getStartDate" Slot="startDate" RetryPrompt="That's not a valid date.  I need a date in the next two weeks" >
+            <d:DateTimePrompt.InitialPrompt>
+                <bb:ActivityTemplate 
+                    Text="When do you to start" Speak="When do you want to start?" AttachmentLayout="Carousel">
+                    <bb:ActivityTemplate.Attachments>
+                        <Attachment ContentUrl="http://foo.com/f.jpg" ContentType="image/jpg"/>
+                        <Attachment ContentUrl="http://foo.com/y.jpg" ContentType="image/jpg"/>
+                        <Attachment ContentUrl="http://foo.com/z.jpg" ContentType="image/jpg"/>
+                    </bb:ActivityTemplate.Attachments>
+                    <bb:ActivityTemplate.SuggestedActions>
+                        <SuggestedActions>
+                            <SuggestedActions.Actions>
+                                <CardAction Text="OK" >
+                                    <CardAction.Value>
+                                        <x:String>This is my result action</x:String>
+                                    </CardAction.Value>
+                                </CardAction>
+                                <CardAction Text="cancel" >
+                                    <CardAction.Value>
+                                        <x:String>This is my result action</x:String>
+                                    </CardAction.Value>
+                                </CardAction>
+                            </SuggestedActions.Actions>
+                        </SuggestedActions>
+                    </bb:ActivityTemplate.SuggestedActions>
+                </bb:ActivityTemplate>
+            </d:DateTimePrompt.InitialPrompt>            
+        </d:DateTimePrompt>
+
+        <d:PostToWebDialog Url="http:/foo.ocom" />
+
+    </d:SequenceDialog.Dialogs>
+
+</d:SequenceDialog>
+
+ 

@@ -1,8 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license.
 using System;
-using Microsoft.Azure.CognitiveServices.Language.LUIS.Runtime.Models;
-using Newtonsoft.Json;
 
 namespace Microsoft.Bot.Builder.AI.Luis
 {
@@ -54,7 +52,7 @@ namespace Microsoft.Bot.Builder.AI.Luis
         /// <value>
         /// LUIS application ID.
         /// </value>
-        public string ApplicationId { get; set;}
+        public string ApplicationId { get; set; }
 
         /// <summary>
         /// Gets or sets lUIS subscription or endpoint key.

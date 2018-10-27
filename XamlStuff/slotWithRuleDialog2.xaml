@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<d:SlotDialog
+    xmlns="clr-namespace:Microsoft.Bot.Schema;assembly=Microsoft.Bot.Schema"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ai="clr-namespace:Microsoft.Bot.Builder.AI.Luis;assembly=Microsoft.Bot.Builder.AI.Luis"
+    xmlns:d="clr-namespace:Microsoft.Bot.Builder.Dialogs;assembly=Microsoft.Bot.Builder.Dialogs"
+    Id="testDialog">
+
+    <d:SlotDialog.Recognizer>
+        <ai:LuisRecognizer Application="12123132123123"/>
+    </d:SlotDialog.Recognizer>
+
+    <d:SlotDialog.Intents>
+        <d:IntentMapping IntentId="UpdateSomething" DialogId="UpdateSomething"/>
+        <d:IntentMapping IntentId="UpdateName" DialogId="UpdateName"/>
+        <d:IntentMapping IntentId="UpdateAge" DialogId="UpdateAge"/>
+        <d:IntentMapping IntentId="UpdateBirthday" DialogId="UpdateBirthday"/>
+        <d:IntentMapping IntentId="Description" DialogId="Description"/>
+    </d:SlotDialog.Intents>
+
+    <d:SlotDialog.SlotDefinitions>
+        <d:TextSlot Name="Name" MinLength="1" MaxLength="30" 
+                    EmptyDescription="I don't know your name."
+                    Description="Your name is {name}."
+                    Changed="OK, I will remember your name is {name}."
+                    TooShort="The {value} is too small for a name, it should be longer then {Slot.MinLength}." 
+                    TooLong="{value} is too long for a name, it should be shorter then {Slot.MaxLength}." 
+                    />
+        <d:IntegerSlot Name="Age" MinValue="1" MaxValue="130" DefaultValue="20"
+                    EmptyDescription="I don't know your age."
+                    Description="Your age is {age}."
+                    TooSmall="{value} is too small, it should be more then {Slot.MinValue}." 
+                    TooLarge="{value} is too big, it should be less then {Slot.MaxValue}." 
+                       />
+        <d:DateSlot Name="Birthday" MinValue="1/1/1900" MaxValue="{x:Now()}"
+                    EmptyDescription="I don't know your birthday."
+                    Description="Your birthday is {slot}"
+                    TooSmall="{value} is too early, it should after {Slot.MinValue}." 
+                    TooLarge="{value} is too late, it should be before {Slot.MaxValue}." 
+                    />
+        <d:TextSlot Name="Phone" Pattern="^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$"
+                    EmptyDescription="I don't know your phone number."
+                    Description="Your phone number is {FORMAT(slot)}"
+                    PatternWrong="{value} is not a valid phone number."
+                    />
+    </d:SlotDialog.SlotDefinitions>
+
+    <d:RuleDialog.Rules>
+        <d:Rule DialogId="namePrompt" Intent="Greeting" FireOnce="true" FireUnique="true" />
+        <d:Rule DialogId="agePrompt" Intent="MyAgeIs" Expression="Age &gt; 30" />
+        <d:Rule DialogId="agePrompt" Intent="MyAgeIs" Expression="Age &gt; 30" />
+    </d:RuleDialog.Rules>
+
+</d:SlotDialog>
+
+ 

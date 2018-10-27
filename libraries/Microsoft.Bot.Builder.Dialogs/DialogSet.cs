@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -64,7 +65,7 @@ namespace Microsoft.Bot.Builder.Dialogs
             var state = await _dialogState.GetAsync(turnContext, () => { return new DialogState(); }, cancellationToken).ConfigureAwait(false);
 
             // Create and return context
-            return new DialogContext(this, turnContext, state);
+            return new DialogContext(this._dialogs.Values.ToList(), turnContext, state);
         }
 
         /// <summary>

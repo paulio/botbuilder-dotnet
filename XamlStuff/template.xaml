@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<d:IntentDialog
+    xmlns="clr-namespace:Microsoft.Bot.Schema;assembly=Microsoft.Bot.Schema"
+    xmlns:bb="clr-namespace:Microsoft.Bot.Builder;assembly=Microsoft.Bot.Builder"
+    xmlns:d="clr-namespace:Microsoft.Bot.Builder.Dialogs;assembly=Microsoft.Bot.Builder.Dialogs"
+    xmlns:luis="clr-namespace:Microsoft.Bot.Builder.AI.Luis;assembly=Microsoft.Bot.Builder.AI.Luis"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Id="testDialog">
+
+    <d:IntentDialog.Recognizer>
+        <luis:LuisRecognizer IncludeAllIntents="true" IncludeInstanceData="true" >
+            <luis:LuisRecognizer.Application>
+                <luis:LuisApplication ApplicationId="12323123123123123"/>
+            </luis:LuisRecognizer.Application>
+        </luis:LuisRecognizer>
+    </d:IntentDialog.Recognizer>
+
+    <d:IntentDialog.Intents>
+        <d:IntentMapping IntentId="Greeting" DialogId="NamePrompt"/>
+        <d:IntentMapping IntentId="CreateIssue" DialogId="IssuePrompt"/>
+        <d:IntentMapping IntentId="Cancel" DialogId="CancelDialog"/>
+    </d:IntentDialog.Intents>
+
+    <d:IntentDialog.Dialogs>
+        <d:TextPrompt Id="NamePrompt" Slot="name"
+                    InitialPrompt="What is your name?" 
+                    RetryPrompt="I didn't understand that, what is your name?"/>
+
+        <d:TextPrompt Id="NamePrompt" Slot="name"
+                    InitialPrompt="[[TextPrompt_InitialPrompt]]" 
+                    RetryPrompt="[[TextPrompt_RetryPrompt]]"/>
+
+        <d:TextPrompt Id="IssuePrompt" Slot="issue">
+            <d:TextPrompt.InitialPrompt>
+                <bb:ActivityTemplate Text="What is your issue" Speak="Yo, drop your probs man" AttachmentLayout="Carousel">
+                    <bb:ActivityTemplate.Attachments>
+                        <Attachment ContentUrl="http://foo.com/f.jpg" ContentType="image/jpg"/>
+                    </bb:ActivityTemplate.Attachments>
+                </bb:ActivityTemplate>
+            </d:TextPrompt.InitialPrompt>
+            <d:TextPrompt.RetryPrompt>
+                <bb:ActivityTemplate Text="I no comprende, What is your issue" Speak="Wah? Yo, drop your probs man"/>
+            </d:TextPrompt.RetryPrompt>
+        </d:TextPrompt>
+
+         <d:PostToWebDialog Url=""
+    </d:IntentDialog.Dialogs>
+    <!--<NumberPrompt x:TypeArguments="x:Int32" Id="agePrompt" MaxValue="1" MinValue="100" 
+                          InitialPrompt="What is your age?"
+                          RetryPrompt="I didn't understand that, what is your age?"/>-->
+</d:IntentDialog>
+

@@ -60,6 +60,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Bot.Configuration
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Bot.Configuration.Tests", "tests\Microsoft.Bot.Configuration.Tests\Microsoft.Bot.Configuration.Tests.csproj", "{1B7920E6-5262-4054-B72D-3A8DBBA057D2}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XamlStuff", "XamlStuff\XamlStuff.csproj", "{D8922960-9355-41B9-BC72-0319F0625D10}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug - NuGet Packages|Any CPU = Debug - NuGet Packages|Any CPU
@@ -253,6 +255,14 @@ Global
 		{1B7920E6-5262-4054-B72D-3A8DBBA057D2}.Documentation|Any CPU.Build.0 = Debug|Any CPU
 		{1B7920E6-5262-4054-B72D-3A8DBBA057D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B7920E6-5262-4054-B72D-3A8DBBA057D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8922960-9355-41B9-BC72-0319F0625D10}.Debug - NuGet Packages|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8922960-9355-41B9-BC72-0319F0625D10}.Debug - NuGet Packages|Any CPU.Build.0 = Debug|Any CPU
+		{D8922960-9355-41B9-BC72-0319F0625D10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8922960-9355-41B9-BC72-0319F0625D10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8922960-9355-41B9-BC72-0319F0625D10}.Documentation|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8922960-9355-41B9-BC72-0319F0625D10}.Documentation|Any CPU.Build.0 = Debug|Any CPU
+		{D8922960-9355-41B9-BC72-0319F0625D10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8922960-9355-41B9-BC72-0319F0625D10}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

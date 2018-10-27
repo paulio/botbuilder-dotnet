@@ -19,5 +19,11 @@ namespace Microsoft.Bot.Schema
         /// <exception cref="ArgumentNullException"/>
         public SuggestedActions(IEnumerable<string> to, IEnumerable<CardAction> actions)
             : this(to.ToArray(), actions.ToArray()) { }
+
+        partial void CustomInit()
+        {
+            this.Actions = new List<CardAction>();
+        }
+
     }
 }

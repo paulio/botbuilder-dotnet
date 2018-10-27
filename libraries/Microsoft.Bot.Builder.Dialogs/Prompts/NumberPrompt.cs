@@ -13,6 +13,11 @@ namespace Microsoft.Bot.Builder.Dialogs
 {
     public class NumberPrompt<T> : Prompt<T>
     {
+        public NumberPrompt()
+            : base()
+        {
+        }
+
         public NumberPrompt(string dialogId, PromptValidator<T> validator = null, string defaultLocale = null)
             : base(dialogId, validator)
         {
@@ -20,6 +25,10 @@ namespace Microsoft.Bot.Builder.Dialogs
         }
 
         public string DefaultLocale { get; set; }
+
+        public int MinValue { get; set; }
+
+        public int MaxValue { get; set; }
 
         protected override async Task OnPromptAsync(ITurnContext turnContext, IDictionary<string, object> state, PromptOptions options, bool isRetry, CancellationToken cancellationToken = default(CancellationToken))
         {

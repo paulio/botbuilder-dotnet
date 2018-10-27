@@ -2,29 +2,66 @@
 // Licensed under the MIT License.
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
+using Portable.Xaml.Markup;
 
 namespace Microsoft.Bot.Builder.Dialogs
 {
+    public class DialogList : List<Dialog>
+    {
+        public DialogList() { }
+
+        public DialogList(IEnumerable<Dialog> dialogs) : base(dialogs) { }
+    }
+
+    [ContentProperty("Dialogs")]
     public class ComponentDialog : Dialog
     {
         private const string PersistedDialogState = "dialogs";
 
-        private DialogSet _dialogs;
+
+        public ComponentDialog()
+            : base()
+        {
+
+        }
 
         public ComponentDialog(string dialogId)
             : base(dialogId)
         {
-            if (string.IsNullOrEmpty(dialogId))
-            {
-                throw new ArgumentNullException(nameof(dialogId));
-            }
-
-            _dialogs = new DialogSet();
         }
 
-        protected string InitialDialogId { get; set; }
+        public ResourceDictionary Resources { get; set; } = new ResourceDictionary();
+
+        public DialogList Dialogs { get; set; } = new DialogList();
+
+        [XmlIgnore]
+        public IStatePropertyAccessor<DialogState> DialogStateProperty { get; set; }
+
+        public string InitialDialogId { get; set; }
+
+        public async Task<DialogContext> CreateContextAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            BotAssert.ContextNotNull(turnContext);
+
+            // ToDo: Component Dialog doesn't call this code path. This needs to be cleaned up in 4.1.
+            if (DialogStateProperty == null)
+            {
+                // Note: This shouldn't ever trigger, as the DialogStateProperty is set in the constructor and validated there.
+                throw new InvalidOperationException($"DialogSet.CreateContextAsync(): DialogSet created with a null IStatePropertyAccessor.");
+            }
+
+            // Load/initialize dialog state
+            var state = await DialogStateProperty.GetAsync(turnContext, () => { return new DialogState(); }, cancellationToken).ConfigureAwait(false);
+
+            // Create and return context
+            return new DialogContext(this.Dialogs, turnContext, state);
+        }
+
 
         public override async Task<DialogTurnResult> BeginDialogAsync(DialogContext outerDc, object options = null, CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -36,7 +73,7 @@ namespace Microsoft.Bot.Builder.Dialogs
             // Start the inner dialog.
             var dialogState = new DialogState();
             outerDc.ActiveDialog.State[PersistedDialogState] = dialogState;
-            var innerDc = new DialogContext(_dialogs, outerDc.Context, dialogState);
+            var innerDc = new DialogContext(this.Dialogs, outerDc.Context, dialogState);
             var turnResult = await OnBeginDialogAsync(innerDc, options, cancellationToken).ConfigureAwait(false);
 
             // Check for end of inner dialog
@@ -61,7 +98,7 @@ namespace Microsoft.Bot.Builder.Dialogs
 
             // Continue execution of inner dialog.
             var dialogState = (DialogState)outerDc.ActiveDialog.State[PersistedDialogState];
-            var innerDc = new DialogContext(_dialogs, outerDc.Context, dialogState);
+            var innerDc = new DialogContext(this.Dialogs, outerDc.Context, dialogState);
             var turnResult = await OnContinueDialogAsync(innerDc, cancellationToken).ConfigureAwait(false);
 
             if (turnResult.Status != DialogTurnStatus.Waiting)
@@ -89,7 +126,7 @@ namespace Microsoft.Bot.Builder.Dialogs
         {
             // Delegate to inner dialog.
             var dialogState = (DialogState)instance.State[PersistedDialogState];
-            var innerDc = new DialogContext(_dialogs, turnContext, dialogState);
+            var innerDc = new DialogContext(this.Dialogs, turnContext, dialogState);
             await innerDc.RepromptDialogAsync(cancellationToken).ConfigureAwait(false);
 
             // Notify component
@@ -102,7 +139,7 @@ namespace Microsoft.Bot.Builder.Dialogs
             if (reason == DialogReason.CancelCalled)
             {
                 var dialogState = (DialogState)instance.State[PersistedDialogState];
-                var innerDc = new DialogContext(_dialogs, turnContext, dialogState);
+                var innerDc = new DialogContext(this.Dialogs, turnContext, dialogState);
                 await innerDc.CancelAllDialogsAsync(cancellationToken).ConfigureAwait(false);
             }
 
@@ -116,7 +153,7 @@ namespace Microsoft.Bot.Builder.Dialogs
         /// <returns>The updated <see cref="ComponentDialog"/>.</returns>
         public ComponentDialog AddDialog(Dialog dialog)
         {
-            _dialogs.Add(dialog);
+            this.Dialogs.Add(dialog);
             if (string.IsNullOrEmpty(InitialDialogId))
             {
                 InitialDialogId = dialog.Id;
@@ -132,7 +169,7 @@ namespace Microsoft.Bot.Builder.Dialogs
         /// <returns>The dialog; or <c>null</c> if there is not a match for the ID.</returns>
         public Dialog FindDialog(string dialogId)
         {
-            return _dialogs.Find(dialogId);
+            return this.Dialogs.Where(dlg => dlg.Id == dialogId).FirstOrDefault();
         }
 
         protected virtual Task<DialogTurnResult> OnBeginDialogAsync(DialogContext innerDc, object options, CancellationToken cancellationToken = default(CancellationToken))

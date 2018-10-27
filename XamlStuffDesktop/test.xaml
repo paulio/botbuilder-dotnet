@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Dealership xmlns="clr-namespace:XamlStuffDesktop"
+            xmlns:f="clr-namespace:Foobar"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <f:Bike Age="15" Brand="Schwin" Name="MyBike"/>
+    <f:Car Age="10" Brand="Ford" Name="booboo" />
+    <f:Car Age="13" Brand="Dodge" Name="Neon" />
+    <f:Bike Age="2" Brand="Puch" Name="Shasta" Recumbent="True"/>
+</Dealership>

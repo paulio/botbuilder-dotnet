@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<d:SequenceDialog2
+    xmlns="clr-namespace:Microsoft.Bot.Schema;assembly=Microsoft.Bot.Schema"
+    xmlns:bb="clr-namespace:Microsoft.Bot.Builder;assembly=Microsoft.Bot.Builder"
+    xmlns:d="clr-namespace:Microsoft.Bot.Builder.Dialogs;assembly=Microsoft.Bot.Builder.Dialogs"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Id="testDialog">
+    
+    <d:SequenceDialog2.SlotDefinitions>
+        <d:TextSlot Name="Name" MinLength="1" MaxLength="30"/>
+        
+        <d:IntegerSlot Name="Age" MinValue="1" MaxValue="130"/>
+        
+        <d:DateSlot Name="Birthday" MinValue="1/1/1900" MaxValue="{x:Now()}"/>
+
+        <d:TextSlot Name="Phone" ValidPattern="^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$"/>
+    </d:SequenceDialog2.SlotDefinitions>
+    
+    <d:SequenceDialog2.Dialogs>
+        <d:SlotPrompt Slot="Name" InitialPrompt="What is your name?"  Retries="3"
+                        RetryPrompt="I didn't understand that, what is your name?"/>
+
+        <d:SlotPrompt Slot="Age" InitialPrompt="What is your age?"
+                          RetryPrompt="I didn't understand that, what is your age?"/>
+
+        <d:SlotPrompt  Slot="Birthday" RetryPrompt="That's not a valid date.  I need a date in the next two weeks" >
+            <d:DateTimePrompt.InitialPrompt>
+                <bb:ActivityTemplate 
+                    Text="When do you to start" Speak="When do you want to start?" AttachmentLayout="Carousel">
+                    <bb:ActivityTemplate.Attachments>
+                        <Attachment ContentUrl="http://foo.com/f.jpg" ContentType="image/jpg"/>
+                        <Attachment ContentUrl="http://foo.com/y.jpg" ContentType="image/jpg"/>
+                        <Attachment ContentUrl="http://foo.com/z.jpg" ContentType="image/jpg"/>
+                    </bb:ActivityTemplate.Attachments>
+                    <bb:ActivityTemplate.SuggestedActions>
+                        <SuggestedActions>
+                            <SuggestedActions.Actions>
+                                <CardAction Text="OK" >
+                                    <CardAction.Value>
+                                        <x:String>This is my result action</x:String>
+                                    </CardAction.Value>
+                                </CardAction>
+                                <CardAction Text="cancel" >
+                                    <CardAction.Value>
+                                        <x:String>This is my result action</x:String>
+                                    </CardAction.Value>
+                                </CardAction>
+                            </SuggestedActions.Actions>
+                        </SuggestedActions>
+                    </bb:ActivityTemplate.SuggestedActions>
+                </bb:ActivityTemplate>
+            </d:DateTimePrompt.InitialPrompt>            
+        </d:SlotPrompt>
+    </d:SequenceDialog2.Dialogs>
+</d:SequenceDialog2>
+
+ 

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<d:RuleDialog
+    xmlns="clr-namespace:Microsoft.Bot.Schema;assembly=Microsoft.Bot.Schema"
+    xmlns:d="clr-namespace:Microsoft.Bot.Builder.Dialogs;assembly=Microsoft.Bot.Builder.Dialogs"
+    xmlns:luis="clr-namespace:Microsoft.Bot.Builder.AI.Luis;assembly=Microsoft.Bot.Builder.AI.Luis"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Id="testDialog">
+
+    <d:RuleDialog.Recognizer>
+        <luis:LuisRecognizer Application="cdc1f5ada60d485696898ad4a68033ff"/>
+    </d:RuleDialog.Recognizer>
+
+    <d:RuleDialog.Rules>
+        <d:Rule DialogId="namePrompt" Intent="Greeting" FireOnce="true" FireUnique="true" />
+        <d:Rule DialogId="agePrompt" Intent="MyAgeIs" Expression="Age &gt; 30" />
+        <d:Rule DialogId="agePrompt" Intent="MyAgeIs" Expression="Age &gt; 30" />
+    </d:RuleDialog.Rules>
+
+    <d:RuleDialog.Dialogs>
+        <d:TextPrompt Id="namePrompt" Slot="name" 
+                    InitialPrompt="What is your name?" 
+                    RetryPrompt="I didn't understand that, what is your name?"/>
+
+        <d:IntegerPrompt Id="agePrompt" MinValue="1" MaxValue="100" 
+                          InitialPrompt="What is your age?"
+                          RetryPrompt="I didn't understand that, what is your age?"/>
+
+    </d:RuleDialog.Dialogs>
+</d:RuleDialog>
+

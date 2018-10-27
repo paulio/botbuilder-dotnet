@@ -12,6 +12,7 @@ using Microsoft.Azure.CognitiveServices.Language.LUIS.Runtime.Models;
 using Microsoft.Bot.Builder.TraceExtensions;
 using Microsoft.Bot.Schema;
 using Newtonsoft.Json.Linq;
+using Portable.Xaml.Markup;
 
 namespace Microsoft.Bot.Builder.AI.Luis
 {
@@ -19,6 +20,7 @@ namespace Microsoft.Bot.Builder.AI.Luis
     /// <summary>
     /// A LUIS based implementation of <see cref="IRecognizer"/>.
     /// </summary>
+    [ContentProperty("Application")]
     public class LuisRecognizer : IRecognizer
     {
         /// <summary>
@@ -35,6 +37,11 @@ namespace Microsoft.Bot.Builder.AI.Luis
         private readonly LuisApplication _application;
         private readonly LuisPredictionOptions _options;
         private readonly bool _includeApiResults;
+
+        public LuisRecognizer()
+        {
+
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LuisRecognizer"/> class.
@@ -53,6 +60,66 @@ namespace Microsoft.Bot.Builder.AI.Luis
                 Endpoint = application.Endpoint,
             };
         }
+
+        public LuisApplication Application { get; set; }
+
+        public bool IncludeApiResults { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Bing Spell Check subscription key.
+        /// </summary>
+        /// <value>
+        /// The Bing Spell Check subscription key.
+        /// </value>
+        public string BingSpellCheckSubscriptionKey { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether all intents come back or only the top one.
+        /// </summary>
+        /// <value>
+        /// True for returning all intents.
+        /// </value>
+        public bool? IncludeAllIntents { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether or not instance data should be included in response.
+        /// </summary>
+        /// <value>
+        /// A value indicating whether or not instance data should be included in response.
+        /// </value>
+        public bool? IncludeInstanceData { get; set; }
+
+        /// <summary>
+        /// Gets or sets if queries should be logged in LUIS.
+        /// </summary>
+        /// <value>
+        /// If queries should be logged in LUIS.
+        /// </value>
+        public bool? Log { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether to spell check queries.
+        /// </summary>
+        /// <value>
+        /// Whether to spell check queries.
+        /// </value>
+        public bool? SpellCheck { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether to use the staging endpoint.
+        /// </summary>
+        /// <value>
+        /// Whether to use the staging endpoint.
+        /// </value>
+        public bool? Staging { get; set; }
+
+        /// <summary>
+        /// Gets or sets the time zone offset.
+        /// </summary>
+        /// <value>
+        /// The time zone offset.
+        /// </value>
+        public double? TimezoneOffset { get; set; }
 
         /// <inheritdoc />
         public async Task<RecognizerResult> RecognizeAsync(ITurnContext turnContext, CancellationToken cancellationToken)

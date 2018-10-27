@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Vehicle" nillable="true" type="Vehicle" />
+  <xs:complexType name="Vehicle" />
+  <xs:element name="ArrayOfVehicle" nillable="true" type="ArrayOfVehicle" />
+  <xs:complexType name="ArrayOfVehicle">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Vehicle" nillable="true" type="Vehicle" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfInt" nillable="true" type="ArrayOfInt" />
+  <xs:complexType name="ArrayOfInt">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="int" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Car" nillable="true" type="Car" />
+  <xs:complexType name="Car">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Vehicle">
+        <xs:attribute name="Name" type="xs:string" />
+        <xs:attribute name="Age" type="xs:int" use="required" />
+        <xs:attribute name="Brand" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Bike" nillable="true" type="Bike" />
+  <xs:complexType name="Bike">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Vehicle">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="TirePressure" type="xs:int" />
+        </xs:sequence>
+        <xs:attribute name="Name" type="xs:string" />
+        <xs:attribute name="Age" type="xs:int" use="required" />
+        <xs:attribute name="Brand" type="xs:string" />
+        <xs:attribute name="Recumbent" type="xs:boolean" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Dealership" nillable="true" type="Dealership" />
+  <xs:complexType name="Dealership">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Vehicles" type="ArrayOfVehicle" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
