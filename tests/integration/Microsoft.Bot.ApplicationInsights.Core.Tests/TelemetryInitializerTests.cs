@@ -20,7 +20,7 @@ namespace Microsoft.Bot.Builder.Integration.ApplicationInsights.Core.Tests
     public class TelemetryInitializerTests
     {
         [TestMethod]
-        public void VerifyAllTelemtryPropoerties()
+        public void VerifyAllTelemetryProperties()
         {
 
             var configuration = new TelemetryConfiguration();

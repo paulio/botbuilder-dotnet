@@ -33,7 +33,7 @@ namespace Microsoft.Bot.Builder.Tests
         {
             var a = new TestAdapter();
             var c = new TurnContext(a, null);
-            Assert.Fail("Should Fail due to null Activty");
+            Assert.Fail("Should Fail due to null Activity");
         }
         [TestMethod]
         public void Constructor()
@@ -489,7 +489,7 @@ namespace Microsoft.Bot.Builder.Tests
             // - Adapter caches ConnectorClient.
             // - Adapter lifetime is singleton.
             // - ConnectorClient implements IDisposable.
-            // - ConnectorClient added in turnContet.TurnCollection.
+            // - ConnectorClient added in turnContext.TurnCollection.
             // - TurnContextCollection disposes elements after each turn.
 
             var connector = new ConnectorClientThrowExceptionOnDispose();

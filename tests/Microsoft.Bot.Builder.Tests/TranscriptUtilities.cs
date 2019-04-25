@@ -14,7 +14,7 @@ using Newtonsoft.Json;
 namespace Microsoft.Bot.Builder.Tests
 {
     /// <summary>
-    /// Helpers to get activities from trancript files
+    /// Helpers to get activities from transcript files
     /// </summary>
     public static class TranscriptUtilities
     {
@@ -38,7 +38,7 @@ namespace Microsoft.Bot.Builder.Tests
         }
 
         /// <summary>
-        /// Loads a list of activities from a trnascript file.
+        /// Loads a list of activities from a transcript file.
         /// </summary>
         /// <param name="relativePath">Path relative to the BOTBUILDER_TRANSCRIPTS_LOCATION environment variable value.</param>
         /// <returns>A list of activities to test</returns>

@@ -34,7 +34,7 @@ namespace Microsoft.Bot.Builder.Integration.ApplicationInsights.Tests
             }
 
             [TestMethod]
-            public void NonNullTelemtryClientSucceeds()
+            public void NonNullTelemetryClientSucceeds()
             {
                 var telemetryClient = new TelemetryClient();
 

@@ -83,7 +83,7 @@ namespace Microsoft.Bot.Builder.Azure
         /// <summary>
         /// Initializes a new instance of the <see cref="CosmosDbStorage"/> class.
         /// This constructor should only be used if the default behavior of the DocumentClient needs to be changed.
-        /// The <see cref="CosmosDbStorage(CosmosDbStorageOptions)"/> constructor is preferer for most cases.
+        /// The <see cref="CosmosDbStorage(CosmosDbStorageOptions)"/> constructor is preferred for most cases.
         /// </summary>
         /// <param name="documentClient">The custom implementation of IDocumentClient.</param>
         /// <param name="cosmosDbCustomClientOptions">Custom client configuration options.</param>
@@ -250,7 +250,7 @@ namespace Microsoft.Bot.Builder.Azure
                 var etag = (change.Value as IStoreItem)?.ETag;
                 if (etag == null || etag == "*")
                 {
-                    // if new item or * then insert or replace unconditionaly
+                    // if new item or * then insert or replace unconditionally
                     await _client.UpsertDocumentAsync(
                         _collectionLink,
                         documentChange,

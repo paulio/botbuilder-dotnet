@@ -111,7 +111,7 @@ namespace Microsoft.Bot.Builder.Integration.ApplicationInsights.Core.Tests
             ArrangeBotFile(); // Default bot file
             ArrangeAppSettings(); // Default app settings
             var server = new TestServer(new WebHostBuilder()
-                .UseStartup<StartupOverideTelemClient>());
+                .UseStartup<StartupOverrideTelemClient>());
             Assert.IsTrue(true);
         }
 

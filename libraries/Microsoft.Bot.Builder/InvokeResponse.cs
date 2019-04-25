@@ -15,7 +15,7 @@ namespace Microsoft.Bot.Builder
         /// <value>The HTTP status code.</value>
         /// <remarks>
         /// The POST that is generated in response to the incoming Invoke Activity
-        /// will have the HTTP Status code specificied by this field.
+        /// will have the HTTP Status code specified by this field.
         /// </remarks>
         public int Status { get; set; }
 

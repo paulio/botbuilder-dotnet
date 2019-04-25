@@ -402,7 +402,7 @@ namespace Microsoft.Bot.Configuration
             {
                 if (this.Padlock?.Length == 0)
                 {
-                    // If no key, create a guid and enrypt that to use as secret validator.
+                    // If no key, create a guid and encrypt that to use as secret validator.
                     this.Padlock = Guid.NewGuid().ToString("n").Encrypt(secret);
                 }
                 else

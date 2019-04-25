@@ -29,10 +29,10 @@ namespace Microsoft.Bot.Builder.Tests
         ///    AFTER        
         /// </summary>       
         [TestMethod]
-        public async Task Middlware_BracketingValidation()
+        public async Task Middleware_BracketingValidation()
         {
             TestAdapter adapter = new TestAdapter()
-                .Use(new BeforeAFterMiddlware());
+                .Use(new BeforeAfterMiddleware());
 
             async Task Echo(ITurnContext ctx, CancellationToken cancellationToken)
             {
@@ -55,7 +55,7 @@ namespace Microsoft.Bot.Builder.Tests
         /// coming back is correct. 
         /// </summary>       
         [TestMethod]
-        public async Task Middlware_ThrowException()
+        public async Task Middleware_ThrowException()
         {
             string uniqueId = Guid.NewGuid().ToString();
 
@@ -97,7 +97,7 @@ namespace Microsoft.Bot.Builder.Tests
 
         }
 
-        public class BeforeAFterMiddlware : IMiddleware
+        public class BeforeAfterMiddleware : IMiddleware
         {
             public async Task OnTurnAsync(ITurnContext turnContext, NextDelegate next, CancellationToken cancellationToken)
             {

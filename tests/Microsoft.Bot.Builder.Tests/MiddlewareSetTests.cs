@@ -59,7 +59,7 @@ namespace Microsoft.Bot.Builder.Tests
         [TestMethod]
         public async Task OneMiddlewareItem()
         {
-            var simple = new WasCalledMiddlware();
+            var simple = new WasCalledMiddleware();
 
             bool wasCalled = false;
             Task CallMe(ITurnContext turnContext, CancellationToken cancellationToken)
@@ -80,7 +80,7 @@ namespace Microsoft.Bot.Builder.Tests
         [TestMethod]
         public async Task OneMiddlewareItemWithDelegate()
         {
-            WasCalledMiddlware simple = new WasCalledMiddlware();
+            WasCalledMiddleware simple = new WasCalledMiddleware();
 
             MiddlewareSet m = new MiddlewareSet();
             m.Use(simple);
@@ -107,8 +107,8 @@ namespace Microsoft.Bot.Builder.Tests
         [TestMethod]
         public async Task TwoMiddlewareItems()
         {
-            WasCalledMiddlware one = new WasCalledMiddlware();
-            WasCalledMiddlware two = new WasCalledMiddlware();
+            WasCalledMiddleware one = new WasCalledMiddleware();
+            WasCalledMiddleware two = new WasCalledMiddleware();
 
             MiddlewareSet m = new MiddlewareSet();
             m.Use(one);
@@ -122,8 +122,8 @@ namespace Microsoft.Bot.Builder.Tests
         [TestMethod]
         public async Task TwoMiddlewareItemsWithDelegate()
         {
-            WasCalledMiddlware one = new WasCalledMiddlware();
-            WasCalledMiddlware two = new WasCalledMiddlware();
+            WasCalledMiddleware one = new WasCalledMiddleware();
+            WasCalledMiddleware two = new WasCalledMiddleware();
 
             int called = 0;
             Task CallMe(ITurnContext turnContext, CancellationToken cancellationToken)
@@ -148,13 +148,13 @@ namespace Microsoft.Bot.Builder.Tests
             bool called1 = false;
             bool called2 = false;
 
-            CallMeMiddlware one = new CallMeMiddlware(() =>
+            CallMeMiddleware one = new CallMeMiddleware(() =>
             {
                 Assert.IsFalse(called2, "Second Middleware was called");
                 called1 = true;
             });
 
-            CallMeMiddlware two = new CallMeMiddlware(() =>
+            CallMeMiddleware two = new CallMeMiddleware(() =>
             {
                 Assert.IsTrue(called1, "First Middleware was not called");
                 called2 = true;
@@ -174,12 +174,12 @@ namespace Microsoft.Bot.Builder.Tests
         {
             bool called1 = false;
 
-            var one = new CallMeMiddlware(() => { called1 = true; });
+            var one = new CallMeMiddleware(() => { called1 = true; });
 
             var m = new MiddlewareSet();
             m.Use(one);
 
-            // The middlware in this pipeline calls next(), so the delegate should be called
+            // The middleware in this pipeline calls next(), so the delegate should be called
             bool didAllRun = false;
             await m.ReceiveActivityWithStatusAsync(null, (ctx, cancellationToken) =>
             {
@@ -198,7 +198,7 @@ namespace Microsoft.Bot.Builder.Tests
             var m = new MiddlewareSet();
             bool didAllRun = false;
 
-            // This middlware pipeline has no entries. This should result in
+            // This middleware pipeline has no entries. This should result in
             // the status being TRUE. 
             await m.ReceiveActivityWithStatusAsync(null, (ctx, cancellationToken) =>
             {
@@ -215,7 +215,7 @@ namespace Microsoft.Bot.Builder.Tests
             bool called1 = false;
             bool called2 = false;
 
-            var one = new CallMeMiddlware(() =>
+            var one = new CallMeMiddleware(() =>
             {
                 Assert.IsFalse(called2, "Second Middleware was called");
                 called1 = true;
@@ -255,7 +255,7 @@ namespace Microsoft.Bot.Builder.Tests
             var m = new MiddlewareSet();
             m.Use(one);
 
-            // The middlware in this pipeline DOES NOT call next(), so this must not be called 
+            // The middleware in this pipeline DOES NOT call next(), so this must not be called 
             bool didAllRun = false;
             await m.ReceiveActivityWithStatusAsync(null, (ctx, cancellationToken) =>
             {
@@ -266,7 +266,7 @@ namespace Microsoft.Bot.Builder.Tests
 
             Assert.IsTrue(called1);
 
-            // Our "Final" action MUST NOT have been called, as the Middlware Pipeline
+            // Our "Final" action MUST NOT have been called, as the Middleware Pipeline
             // didn't complete. 
             Assert.IsFalse(didAllRun);
         }
@@ -354,7 +354,7 @@ namespace Microsoft.Bot.Builder.Tests
             }));
 
             m.Use(
-                new CallMeMiddlware(() =>
+                new CallMeMiddleware(() =>
                 {
                     Assert.IsTrue(didRun1, "First middleware should have already been called");
                     Assert.IsFalse(didRun2, "Second middleware should not have been invoked yet");
@@ -375,7 +375,7 @@ namespace Microsoft.Bot.Builder.Tests
             MiddlewareSet m = new MiddlewareSet();
 
             m.Use(
-                new CallMeMiddlware(() =>
+                new CallMeMiddleware(() =>
                 {
                     Assert.IsFalse(didRun1, "First middleware should not have been called yet");
                     Assert.IsFalse(didRun2, "Second Middleware should not have been called yet");
@@ -428,7 +428,7 @@ namespace Microsoft.Bot.Builder.Tests
         }
 
         [TestMethod]
-        public async Task CatchAnExceptionViaMiddlware()
+        public async Task CatchAnExceptionViaMiddleware()
         {
             var m = new MiddlewareSet();
             bool caughtException = false;
@@ -456,7 +456,7 @@ namespace Microsoft.Bot.Builder.Tests
             Assert.IsTrue(caughtException);
         }
 
-        public class WasCalledMiddlware : IMiddleware
+        public class WasCalledMiddleware : IMiddleware
         {
             public bool Called { get; set; } = false;
 
@@ -482,10 +482,10 @@ namespace Microsoft.Bot.Builder.Tests
             }
         }
 
-        public class CallMeMiddlware : IMiddleware
+        public class CallMeMiddleware : IMiddleware
         {
             private readonly Action _callMe;
-            public CallMeMiddlware(Action callMe)
+            public CallMeMiddleware(Action callMe)
             {
                 _callMe = callMe;
             }

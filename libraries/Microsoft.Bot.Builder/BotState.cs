@@ -46,7 +46,7 @@ namespace Microsoft.Bot.Builder
         }
 
         /// <summary>
-        /// Reads in  the current state object and caches it in the context object for this turm.
+        /// Reads in  the current state object and caches it in the context object for this turn.
         /// </summary>
         /// <param name="turnContext">The context object for this turn.</param>
         /// <param name="force">Optional. True to bypass the cache.</param>
@@ -173,7 +173,7 @@ namespace Microsoft.Bot.Builder
 
             var cachedState = turnContext.TurnState.Get<CachedBotState>(_contextServiceKey);
 
-            // if there is no value, this will throw, to signal to IPropertyAccesor that a default value should be computed
+            // if there is no value, this will throw, to signal to IPropertyAccessor that a default value should be computed
             // This allows this to work with value types
             return Task.FromResult((T)cachedState.State[propertyName]);
         }

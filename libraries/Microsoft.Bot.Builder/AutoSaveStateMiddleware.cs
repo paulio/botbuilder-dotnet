@@ -52,7 +52,7 @@ namespace Microsoft.Bot.Builder
         /// Middleware implementation which calls savesChanges automatically at the end of the turn.
         /// </summary>
         /// <param name="turnContext">turn context.</param>
-        /// <param name="next">next middlware.</param>
+        /// <param name="next">next middleware.</param>
         /// <param name="cancellationToken">cancellationToken.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         public async Task OnTurnAsync(ITurnContext turnContext, NextDelegate next, CancellationToken cancellationToken = default(CancellationToken))

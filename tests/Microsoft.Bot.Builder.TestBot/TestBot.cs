@@ -48,7 +48,7 @@ namespace Microsoft.Bot.Builder.TestBot
                 var results = await dialogContext.ContinueDialogAsync(cancellationToken);
 
                 // HasActive = true if there is an active dialog on the dialogstack
-                // HasResults = true if the dialog just completed and the final  result can be retrived
+                // HasResults = true if the dialog just completed and the final  result can be retrieved
                 // if both are false this indicates a new dialog needs to start
                 // an additional check for Responded stops a new waterfall from being automatically started over
                 if (results.Status == DialogTurnStatus.Empty)

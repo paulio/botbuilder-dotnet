@@ -22,7 +22,7 @@ namespace Microsoft.Bot.Builder.Integration.ApplicationInsights.Core.Tests
     public class TelemetryInitializerTests
     {
         [TestMethod]
-        public void VerifyAllTelemtryPropoerties()
+        public void VerifyAllTelemetryProperties()
         {
 
             var configuration = new TelemetryConfiguration();
@@ -71,7 +71,7 @@ namespace Microsoft.Bot.Builder.Integration.ApplicationInsights.Core.Tests
         }
 
         [TestMethod]
-        public void VerifyTracePropoerties()
+        public void VerifyTraceProperties()
         {
 
             var configuration = new TelemetryConfiguration();
@@ -118,7 +118,7 @@ namespace Microsoft.Bot.Builder.Integration.ApplicationInsights.Core.Tests
         }
 
         [TestMethod]
-        public void VerifyRequestPropoerties()
+        public void VerifyRequestProperties()
         {
 
             var configuration = new TelemetryConfiguration();

@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 namespace Microsoft.Bot.Builder
 {
     /// <summary>
-    /// Middleware for logging incoming and outgoing activitites to an <see cref="ITranscriptStore"/>.
+    /// Middleware for logging incoming and outgoing activities to an <see cref="ITranscriptStore"/>.
     /// </summary>
     public class TranscriptLoggerMiddleware : IMiddleware
     {

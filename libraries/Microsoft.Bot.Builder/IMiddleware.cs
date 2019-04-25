@@ -34,7 +34,7 @@ namespace Microsoft.Bot.Builder
     public interface IMiddleware
     {
         /// <summary>
-        /// When implemented in middleware, processess an incoming activity.
+        /// When implemented in middleware, processes an incoming activity.
         /// </summary>
         /// <param name="turnContext">The context object for this turn.</param>
         /// <param name="next">The delegate to call to continue the bot middleware pipeline.</param>
@@ -42,7 +42,7 @@ namespace Microsoft.Bot.Builder
         /// or threads to receive notice of cancellation.</param>
         /// <returns>A task that represents the work queued to execute.</returns>
         /// <remarks>Middleware calls the <paramref name="next"/> delegate to pass control to
-        /// the next middleware in the pipeline. If middleware doesn’t call the next delegate,
+        /// the next middleware in the pipeline. If middleware doesn't call the next delegate,
         /// the adapter does not call any of the subsequent middleware’s request handlers or the
         /// bot’s receive handler, and the pipeline short circuits.
         /// <para>The <paramref name="turnContext"/> provides information about the

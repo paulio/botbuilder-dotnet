@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Microsoft.Bot.Builder.AI.Luis.Tests
 {
     /// <summary>
-    /// This HttpClientHandler returns a hard coded response equivallent to a LUIS no-match-found result.
+    /// This HttpClientHandler returns a hard coded response equivalent to a LUIS no-match-found result.
     /// </summary>
     public class EmptyLuisResponseClientHandler : HttpClientHandler
     {

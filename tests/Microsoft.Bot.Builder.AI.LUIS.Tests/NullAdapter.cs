@@ -9,7 +9,7 @@ using Microsoft.Bot.Schema;
 namespace Microsoft.Bot.Builder.AI.Luis.Tests
 {
     /// <summary>
-    /// This is a BotAdapter that does nothing on the Send operation, equivallent to piping to /dev/null.
+    /// This is a BotAdapter that does nothing on the Send operation, equivalent to piping to /dev/null.
     /// </summary>
     public class NullAdapter : BotAdapter
     {

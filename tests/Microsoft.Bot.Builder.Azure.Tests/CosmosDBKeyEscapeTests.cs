@@ -66,7 +66,7 @@ namespace Microsoft.Bot.Builder.Azure.Tests
             var validKey = "*2atest*2a";
             var validKey2 = "*test*";
 
-            // If we failed to esacpe the "*", then validKey2 would
+            // If we failed to escape the "*", then validKey2 would
             // escape to the same value as validKey. To prevent this
             // we makes sure to escape the *. 
 

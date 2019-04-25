@@ -354,7 +354,7 @@ namespace Microsoft.Bot.Connector.Authentication
         }
 
         /// <summary>
-        /// has token reached half/life ? If so, we get more agressive about trying to refresh it in the background
+        /// has token reached half/life ? If so, we get more aggressive about trying to refresh it in the background
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>

@@ -12,10 +12,10 @@ using Moq;
 
 namespace Microsoft.Bot.Builder.Integration.ApplicationInsights.Core.Tests
 {
-    internal class StartupOverideTelemClient
+    internal class StartupOverrideTelemClient
     {
         private readonly Mock<IBotTelemetryClient> _telemClient;
-        public StartupOverideTelemClient(IHostingEnvironment env)
+        public StartupOverrideTelemClient(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)

@@ -32,7 +32,7 @@ namespace Microsoft.Bot.Builder
     /// bot's application logic, and sends responses back to the user's channel.
     /// <para>Use <see cref="Use(IMiddleware)"/> to add <see cref="IMiddleware"/> objects
     /// to your adapter’s middleware collection. The adapter processes and directs
-    /// incoming activities in through the bot middleware pipeline to your bot’s logic
+    /// incoming activities in through the bot middleware pipeline to your bot's logic
     /// and then back out again. As each activity flows in and out of the bot, each piece
     /// of middleware can inspect or act upon the activity, both before and after the bot
     /// logic runs.</para>
@@ -43,7 +43,7 @@ namespace Microsoft.Bot.Builder
     /// <seealso cref="IMiddleware"/>
     public class BotFrameworkAdapter : BotAdapter, IAdapterIntegration
     {
-        private const string InvokeReponseKey = "BotFrameworkAdapter.InvokeResponse";
+        private const string InvokeResponseKey = "BotFrameworkAdapter.InvokeResponse";
         private const string BotIdentityKey = "BotIdentity";
 
         private static readonly HttpClient DefaultHttpClient = new HttpClient();
@@ -71,7 +71,7 @@ namespace Microsoft.Bot.Builder
         /// <exception cref="ArgumentNullException">
         /// <paramref name="credentialProvider"/> is <c>null</c>.</exception>
         /// <remarks>Use a <see cref="MiddlewareSet"/> object to add multiple middleware
-        /// components in the conustructor. Use the <see cref="Use(IMiddleware)"/> method to
+        /// components in the constructor. Use the <see cref="Use(IMiddleware)"/> method to
         /// add additional middleware to the adapter after construction.
         /// </remarks>
         public BotFrameworkAdapter(
@@ -107,7 +107,7 @@ namespace Microsoft.Bot.Builder
         /// <paramref name="botAppId"/>, <paramref name="reference"/>, or
         /// <paramref name="callback"/> is <c>null</c>.</exception>
         /// <remarks>Call this method to proactively send a message to a conversation.
-        /// Most _channels require a user to initaiate a conversation with a bot
+        /// Most _channels require a user to initiate a conversation with a bot
         /// before the bot can send activities to the user.
         /// <para>This method registers the following services for the turn.<list type="bullet">
         /// <item><see cref="IIdentity"/> (key = "BotIdentity"), a claims identity for the bot.</item>
@@ -232,7 +232,7 @@ namespace Microsoft.Bot.Builder
                 // the Bot will return a specific body and return code.
                 if (activity.Type == ActivityTypes.Invoke)
                 {
-                    var activityInvokeResponse = context.TurnState.Get<Activity>(InvokeReponseKey);
+                    var activityInvokeResponse = context.TurnState.Get<Activity>(InvokeResponseKey);
                     if (activityInvokeResponse == null)
                     {
                         return new InvokeResponse { Status = (int)HttpStatusCode.NotImplemented };
@@ -302,7 +302,7 @@ namespace Microsoft.Bot.Builder
                 }
                 else if (activity.Type == ActivityTypesEx.InvokeResponse)
                 {
-                    turnContext.TurnState.Add(InvokeReponseKey, activity);
+                    turnContext.TurnState.Add(InvokeResponseKey, activity);
 
                     // No need to create a response. One will be created below.
                 }
@@ -657,7 +657,7 @@ namespace Microsoft.Bot.Builder
         /// </summary>
         /// <param name="context">Context for the current turn of conversation with the user.</param>
         /// <param name="userId">The user Id for which token status is retrieved.</param>
-        /// <param name="includeFilter">Optional comma seperated list of connection's to include. Blank will return token status for all configured connections.</param>
+        /// <param name="includeFilter">Optional comma separated list of connection's to include. Blank will return token status for all configured connections.</param>
         /// <returns>Array of TokenStatus.</returns>
         public async Task<TokenStatus[]> GetTokenStatusAsync(ITurnContext context, string userId, string includeFilter = null)
         {
@@ -676,7 +676,7 @@ namespace Microsoft.Bot.Builder
         /// Retrieves Azure Active Directory tokens for particular resources on a configured connection.
         /// </summary>
         /// <param name="context">Context for the current turn of conversation with the user.</param>
-        /// <param name="connectionName">The name of the Azure Active Direcotry connection configured with this bot.</param>
+        /// <param name="connectionName">The name of the Azure Active Directory connection configured with this bot.</param>
         /// <param name="resourceUrls">The list of resource URLs to retrieve tokens for.</param>
         /// <param name="userId">The user Id for which tokens are retrieved. If passing in null the userId is taken from the Activity in the ITurnContext.</param>
         /// <returns>Dictionary of resourceUrl to the corresponding TokenResponse.</returns>
@@ -790,16 +790,16 @@ namespace Microsoft.Bot.Builder
         /// <param name="claimsIdentity">The claims identity.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>ConnectorClient instance.</returns>
-        /// <exception cref="NotSupportedException">ClaimsIdemtity cannot be null. Pass Anonymous ClaimsIdentity if authentication is turned off.</exception>
+        /// <exception cref="NotSupportedException">ClaimsIdentity cannot be null. Pass Anonymous ClaimsIdentity if authentication is turned off.</exception>
         private async Task<IConnectorClient> CreateConnectorClientAsync(string serviceUrl, ClaimsIdentity claimsIdentity, CancellationToken cancellationToken)
         {
             if (claimsIdentity == null)
             {
-                throw new NotSupportedException("ClaimsIdemtity cannot be null. Pass Anonymous ClaimsIdentity if authentication is turned off.");
+                throw new NotSupportedException("ClaimsIdentity cannot be null. Pass Anonymous ClaimsIdentity if authentication is turned off.");
             }
 
             // For requests from channel App Id is in Audience claim of JWT token. For emulator it is in AppId claim. For
-            // unauthenticated requests we have anonymouse identity provided auth is disabled.
+            // unauthenticated requests we have anonymous identity provided auth is disabled.
             // For Activities coming from Emulator AppId claim contains the Bot's AAD AppId.
             var botAppIdClaim = claimsIdentity.Claims?.SingleOrDefault(claim => claim.Type == AuthenticationConstants.AudienceClaim)
                     ??

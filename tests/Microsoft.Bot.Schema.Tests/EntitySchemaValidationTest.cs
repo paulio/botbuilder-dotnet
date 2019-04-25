@@ -9,7 +9,7 @@ namespace Microsoft.Bot.Schema.Tests
 {
     [TestClass]
     /// <summary>
-    /// Entity schema validation tests to ensure that serilization and deserialization work as expected.
+    /// Entity schema validation tests to ensure that serialization and deserialization work as expected.
     /// </summary>
     public class EntitySchemaValidationTest
     {

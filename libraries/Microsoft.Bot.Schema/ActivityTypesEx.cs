@@ -11,7 +11,7 @@ namespace Microsoft.Bot.Schema
         /// <summary>
         /// The type value for delay activities.
         /// </summary>
-        /// <remarks>As an outgoing activity type, causes the adapter to pasue for <see cref="Activity.Value"/> milliseconds.
+        /// <remarks>As an outgoing activity type, causes the adapter to pause for <see cref="Activity.Value"/> milliseconds.
         /// The activity's <see cref="Activity.Value"/> should be a <see cref="System.Int32"/>.</remarks>
         public const string Delay = "delay";
 

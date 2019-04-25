@@ -313,11 +313,11 @@ namespace Microsoft.Bot.Builder.AI.Luis
 
         private static IList<EntityModel> PopulateCompositeEntityModel(CompositeEntityModel compositeEntity, IList<EntityModel> entities, JObject entitiesAndMetadata, bool verbose)
         {
-            var childrenEntites = new JObject();
+            var childrenEntities = new JObject();
             var childrenEntitiesMetadata = new JObject();
             if (verbose)
             {
-                childrenEntites[_metadataKey] = new JObject();
+                childrenEntities[_metadataKey] = new JObject();
             }
 
             // This is now implemented as O(n^2) search and can be reduced to O(2n) using a map as an optimization if n grows
@@ -332,7 +332,7 @@ namespace Microsoft.Bot.Builder.AI.Luis
             if (verbose)
             {
                 childrenEntitiesMetadata = ExtractEntityMetadata(compositeEntityMetadata);
-                childrenEntites[_metadataKey] = new JObject();
+                childrenEntities[_metadataKey] = new JObject();
             }
 
             var coveredSet = new HashSet<EntityModel>();
@@ -354,16 +354,16 @@ namespace Microsoft.Bot.Builder.AI.Luis
 
                     // Add to the set to ensure that we don't consider the same child entity more than once per composite
                     coveredSet.Add(entity);
-                    AddProperty(childrenEntites, ExtractNormalizedEntityName(entity), ExtractEntityValue(entity));
+                    AddProperty(childrenEntities, ExtractNormalizedEntityName(entity), ExtractEntityValue(entity));
 
                     if (verbose)
                     {
-                        AddProperty((JObject)childrenEntites[_metadataKey], ExtractNormalizedEntityName(entity), ExtractEntityMetadata(entity));
+                        AddProperty((JObject)childrenEntities[_metadataKey], ExtractNormalizedEntityName(entity), ExtractEntityMetadata(entity));
                     }
                 }
             }
 
-            AddProperty(entitiesAndMetadata, ExtractNormalizedEntityName(compositeEntityMetadata), childrenEntites);
+            AddProperty(entitiesAndMetadata, ExtractNormalizedEntityName(compositeEntityMetadata), childrenEntities);
             if (verbose)
             {
                 AddProperty((JObject)entitiesAndMetadata[_metadataKey], ExtractNormalizedEntityName(compositeEntityMetadata), childrenEntitiesMetadata);

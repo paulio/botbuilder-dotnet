@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 namespace Microsoft.Bot.Configuration.Tests
 {
     [TestClass]
-    public class ConfingurationLoadAndSaveTests
+    public class ConfigurationLoadAndSaveTests
     {
         [TestMethod]
         public async Task DeserializeBotFile()

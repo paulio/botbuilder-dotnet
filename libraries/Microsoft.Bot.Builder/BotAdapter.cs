@@ -38,7 +38,7 @@ namespace Microsoft.Bot.Builder
         }
 
         /// <summary>
-        /// Gets or sets an error handler that can catche exceptions in the middleware or application.
+        /// Gets or sets an error handler that can catch exceptions in the middleware or application.
         /// </summary>
         /// <value>An error handler that can catch exceptions in the middleware or application.</value>
         public Func<ITurnContext, Exception, Task> OnTurnError { get; set; }
@@ -111,8 +111,8 @@ namespace Microsoft.Bot.Builder
         /// <summary>
         /// Sends a proactive message to a conversation.
         /// </summary>
-        /// <param name="botId">The application ID of the bot. This paramter is ignored in
-        /// single tenant the Adpters (Console, Test, etc) but is critical to the BotFrameworkAdapter
+        /// <param name="botId">The application ID of the bot. This parameter is ignored in
+        /// single tenant the Adapters (Console, Test, etc) but is critical to the BotFrameworkAdapter
         /// which is multi-tenant aware. </param>
         /// <param name="reference">A reference to the conversation to continue.</param>
         /// <param name="callback">The method to call for the resulting bot turn.</param>
@@ -145,7 +145,7 @@ namespace Microsoft.Bot.Builder
         /// The adapter passes in the context object for the turn and a next delegate,
         /// and the middleware calls the delegate to pass control to the next middleware
         /// in the pipeline. Once control reaches the end of the pipeline, the adapter calls
-        /// the <paramref name="callback"/> method. If a middleware component doesn’t call
+        /// the <paramref name="callback"/> method. If a middleware component doesn't call
         /// the next delegate, the adapter does not call  any of the subsequent middleware’s
         /// <see cref="IMiddleware.OnTurnAsync(ITurnContext, NextDelegate, CancellationToken)"/>
         /// methods or the callback method, and the pipeline short circuits.

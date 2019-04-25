@@ -30,10 +30,10 @@ namespace Microsoft.Bot.Builder.AI.QnA
         public QueryResult[] QueryResults { get; set; }
 
         /// <summary>
-        /// Gets or sets iD of the Knowledgebase that is being used.
+        /// Gets or sets iD of the KnowledgeBase that is being used.
         /// </summary>
         /// <value>
-        /// ID of the Knowledgebase that is being used.
+        /// ID of the KnowledgeBase that is being used.
         /// </value>
         [JsonProperty("knowledgeBaseId")]
         public string KnowledgeBaseId { get; set; }

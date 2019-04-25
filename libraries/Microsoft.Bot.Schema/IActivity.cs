@@ -171,7 +171,7 @@ namespace Microsoft.Bot.Schema
         /// </summary>
         /// <param name="reference">The conversation reference.</param>
         /// <param name="isIncoming">(Optional) <c>true</c> to treat the activity as an 
-        /// incoming activity, where the bot is the recipient; otherwaire <c>false</c>.
+        /// incoming activity, where the bot is the recipient; otherwise <c>false</c>.
         /// Default is <c>false</c>, and the activity will show the bot as the sender.</param>
         /// <exception cref="ArgumentNullException"><paramref name="reference"/> is null.</exception>
         /// <remarks>Call <see cref="GetConversationReference"/> on an incoming

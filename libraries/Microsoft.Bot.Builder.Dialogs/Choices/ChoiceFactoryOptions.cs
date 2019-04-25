@@ -16,7 +16,7 @@ namespace Microsoft.Bot.Builder.Dialogs.Choices
         /// Initializes a new instance of the <see cref="ChoiceFactoryOptions"/> class.
         /// Refer to the code in teh ConfirmPrompt for an example of usage.
         /// </summary>
-        /// <param name="inlineSeparator">The inline seperator value.</param>
+        /// <param name="inlineSeparator">The inline separator value.</param>
         /// <param name="inlineOr">The inline or value.</param>
         /// <param name="inlineOrMore">The inline or more value.</param>
         /// <param name="includeNumbers">Flag indicating whether to include numbers as a choice.</param>

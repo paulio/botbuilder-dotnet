@@ -56,7 +56,7 @@ namespace Microsoft.Bot.Builder.Adapters
         public Queue<Activity> ActiveQueue { get; } = new Queue<Activity>();
 
         /// <summary>
-        /// Gets or sets a reference to the current coversation.
+        /// Gets or sets a reference to the current conversation.
         /// </summary>
         /// <value>A reference to the current conversation.</value>
         public ConversationReference Conversation { get; set; }
@@ -165,7 +165,7 @@ namespace Microsoft.Bot.Builder.Adapters
                 {
                     // The BotFrameworkAdapter and Console adapter implement this
                     // hack directly in the POST method. Replicating that here
-                    // to keep the behavior as close as possible to facillitate
+                    // to keep the behavior as close as possible to facilitate
                     // more realistic tests.
                     var delayMs = (int)activity.Value;
 
@@ -276,7 +276,7 @@ namespace Microsoft.Bot.Builder.Adapters
         /// <param name="cancellationToken">A cancellation token that can be used by other objects
         /// or threads to receive notice of cancellation.</param>
         /// <returns>A task that represents the work queued to execute.</returns>
-        /// <remarks>This resets the <see cref="ActiveQueue"/>, and does not maintain multiple converstion queues.</remarks>
+        /// <remarks>This resets the <see cref="ActiveQueue"/>, and does not maintain multiple conversation queues.</remarks>
         public Task CreateConversationAsync(string channelId, BotCallbackHandler callback, CancellationToken cancellationToken)
         {
             ActiveQueue.Clear();
